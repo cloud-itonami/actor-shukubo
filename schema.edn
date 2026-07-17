@@ -1,4 +1,4 @@
-;; 20-actors/shukubo/schema.edn — Datomic/Datascript compatible schema
+;; schema.edn — Datomic/Datascript compatible schema
 ;; definitions for this actor's lex/*.edn files (auto-accumulated by the Phase 4
 ;; edn-datomize fan-out, adapted from manifest/edn-datomize.cljs wrap-map!).
 ;; :db/ident attribute list. Datomic-specific keys (:db.install/_attribute etc.) unused.
