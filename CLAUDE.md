@@ -1,4 +1,7 @@
-# 20-actors/shukubo 宿坊
+# cloud-itonami/actor-shukubo 宿坊
+
+Canonical repository: `https://github.com/cloud-itonami/actor-shukubo`.
+The former `etzhayyim/com-etzhayyim-shukubo` path is a compatibility redirect.
 
 **Pilgrim-lodging commons — Airbnb/Hotels charter-clean inversion. ADR-2606071600. Status: R0.**
 
