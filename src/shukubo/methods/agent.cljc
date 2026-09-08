@@ -9,7 +9,7 @@
   Note: stay/booking ids derive from a deterministic hash of (host+title)/(guest+checkIn); the
   Python original used the per-process-salted builtin hash(), so callers only rely on the FORMAT
   and on same-input→same-id (which Clojure's deterministic hash preserves), never the exact value."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def TITHE-BPS 1000)   ; 10% TitheRouter auto-split (G7), basis points
 ;; Ring ordering is constitutional (G4): covenantal hospitality before internal before external.
@@ -142,7 +142,7 @@
   [host-did stay]
   (if (not (true? (get stay "noSurveil")))
     {"state" "refused" "reason" "in-stay surveillance not permitted as a feature (G14)"}
-    (let [habit (str/lower-case (or (get stay "habitability") ""))
+    (let [habit (str/lower (or (get stay "habitability") ""))
           missing (filterv #(not (str/includes? habit %)) REQUIRED-HABITABILITY)]
       (if (seq missing)
         {"state" "refused" "reason" (str "habitability attestation missing " missing " (G12)")}
