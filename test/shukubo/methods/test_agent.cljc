@@ -4,7 +4,7 @@
   handoff), G4 commons-first ordering, G7 tithe 10%, G8 no-server-key, G12 hospitality-dignity (no
   person score; space habitability only), G13 no-surge, G14 privacy (noSurveil)."
   (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [shukubo.methods.agent :as agent]))
 
 (def SBT {"did:plc:pilgrim" true "did:plc:lapsed" false})
@@ -15,17 +15,17 @@
 
 ;; ── list_stay ──
 (deftest test-no-commission-field
-  (is (every? #(not (str/includes? (str/lower-case %) "commission")) (keys (stay* "internal")))))
+  (is (every? #(not (str/includes? (str/lower %) "commission")) (keys (stay* "internal")))))
 
 (deftest test-no-surge-field
   (let [ks (keys (stay* "internal"))]
-    (is (every? #(not (str/includes? (str/lower-case %) "surge")) ks))
-    (is (every? #(not (str/includes? (str/lower-case %) "dynamic")) ks))))
+    (is (every? #(not (str/includes? (str/lower %) "surge")) ks))
+    (is (every? #(not (str/includes? (str/lower %) "dynamic")) ks))))
 
 (deftest test-no-person-score-field
   (let [s (stay* "internal")]
-    (is (every? #(not (str/includes? (str/lower-case %) "score")) (keys s)))
-    (is (every? #(not (str/includes? (str/lower-case %) "rating")) (keys s)))
+    (is (every? #(not (str/includes? (str/lower %) "score")) (keys s)))
+    (is (every? #(not (str/includes? (str/lower %) "rating")) (keys s)))
     (is (contains? s "habitability"))))
 
 (deftest test-no-surveil-invariant
@@ -130,8 +130,8 @@
 (deftest test-registers-with-habitability
   (let [out (agent/register-host "did:plc:host" (stay* "internal" :habitability "water+heat+egress"))]
     (is (= "registered" (get out "state")))
-    (is (every? #(not (str/includes? (str/lower-case %) "score")) (keys out)))   ; G12
-    (is (every? #(not (str/includes? (str/lower-case %) "rating")) (keys out)))))
+    (is (every? #(not (str/includes? (str/lower %) "score")) (keys out)))   ; G12
+    (is (every? #(not (str/includes? (str/lower %) "rating")) (keys out)))))
 
 (deftest test-missing-habitability-refused
   (let [out (agent/register-host "did:plc:host" (stay* "internal" :habitability "water"))]
