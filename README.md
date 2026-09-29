@@ -7,4 +7,4 @@ surge pricing, or person scoring. Tamaki separately owns artificial-organism
 evolution.
 
 The canonical actor contract is `manifest.edn`; operational invariants are in
-`CLAUDE.md`.
+`AGENTS.md`.
